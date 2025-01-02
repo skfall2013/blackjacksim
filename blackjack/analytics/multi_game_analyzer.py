@@ -176,3 +176,4 @@ class MultiGameAnalyzer:
         # Avoid plot label overlap
         plt.tight_layout()
         plt.show()
+
