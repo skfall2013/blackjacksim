@@ -1,6 +1,6 @@
 class MetricTracker:
     """Class for tracking game metrics for analytics purposes."""
-    
+
     def __init__(self):
         # Metrics
         self.wins = 0
@@ -10,9 +10,12 @@ class MetricTracker:
         self.insurance_losses = 0
         self.gambler_blackjacks = 0
         self.dealer_blackjacks = 0
-        
+
         # Bankroll over time
         self.bankroll_progression = []
+
+        # Track win/loss results
+        self.wins_losses = []
 
     def _increment_metric(self, metric):
         """Increment the desired metric (privately)."""
@@ -20,8 +23,10 @@ class MetricTracker:
             self.turns += 1
         elif metric == 'wins':
             self.wins += 1
+            self.wins_losses.append('win')
         elif metric == 'losses':
             self.losses += 1
+            self.wins_losses.append('loss')
         elif metric == 'pushes':
             self.pushes += 1
         elif metric == 'insurance wins':
@@ -76,5 +81,6 @@ class MetricTracker:
             'insurance_losses': self.insurance_losses,
             'gambler_blackjacks': self.gambler_blackjacks,
             'dealer_blackjacks': self.dealer_blackjacks,
-            'bankroll_progression': self.bankroll_progression
+            'bankroll_progression': self.bankroll_progression,
+            'wins_losses': self.wins_losses
         }
