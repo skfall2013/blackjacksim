@@ -1,10 +1,7 @@
 from statistics import mean
 from textwrap import dedent
-
 import matplotlib.pyplot as plt
-
 from blackjack.display_utils import money_format, pct_format, zero_division_pct
-
 
 def slice_label(percent, all_vals):
     """
@@ -13,7 +10,6 @@ def slice_label(percent, all_vals):
     """
     absolute = int(percent / 100.0 * sum(all_vals))
     return "{:.1f}%\n({:d})".format(percent, absolute)
-
 
 class MultiGameAnalyzer:
     """Class for running basic analytics on tracked metrics for a multiple games."""
@@ -145,7 +141,7 @@ class MultiGameAnalyzer:
     def create_plots(self):
         """Create charts summarizing the tracked metric data."""
         # Create a figure to hold the plots (called "axes")
-        fig, (ax1, ax2) = plt.subplots(2, 1)  # 2 rows 1 column of axes (i.e. stacked plots)
+        fig, (ax1, ax2, ax3) = plt.subplots(3, 1)  # 3 rows 1 column of axes (i.e. stacked plots)
 
         # Axes 1: Final Bankroll Distribution (Histogram)
         ax1.hist(self.final_bankrolls)
@@ -168,6 +164,14 @@ class MultiGameAnalyzer:
         ax2.legend(wedges, labels, title="Outcomes")
         ax2.set_title('Hand Outcomes')
         ax2.axis('equal')
+
+        # Axes 3: Winning Streaks (Bar chart)
+        streaks = self.winning_streaks
+        streak_counts = {streak: streaks.count(streak) for streak in set(streaks)}
+        ax3.bar(streak_counts.keys(), streak_counts.values())
+        ax3.set_xlabel('Winning Streak Length')
+        ax3.set_ylabel('Frequency')
+        ax3.set_title('Winning Streaks')
 
         # Avoid plot label overlap
         plt.tight_layout()
