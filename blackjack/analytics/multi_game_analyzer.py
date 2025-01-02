@@ -141,7 +141,7 @@ class MultiGameAnalyzer:
     def create_plots(self):
         """Create charts summarizing the tracked metric data."""
         # Create a figure to hold the plots (called "axes")
-        fig, (ax1, ax2, ax3) = plt.subplots(3, 1)  # 3 rows 1 column of axes (i.e. stacked plots)
+        fig, (ax1, ax2, ax3) = plt.subplots(3, 1, figsize=(10, 15))  # Adjust the figure size
 
         # Axes 1: Final Bankroll Distribution (Histogram)
         ax1.hist(self.final_bankrolls)
@@ -161,19 +161,27 @@ class MultiGameAnalyzer:
                 labels.append(label)
 
         wedges, _, _ = ax2.pie(data, autopct=lambda pct: slice_label(pct, data), textprops=dict(color="w"))
-        ax2.legend(wedges, labels, title="Outcomes")
+        ax2.legend(wedges, labels, title="Outcomes", loc="center left", bbox_to_anchor=(1, 0, 0.5, 1))
         ax2.set_title('Hand Outcomes')
         ax2.axis('equal')
 
         # Axes 3: Winning Streaks (Bar chart)
         streaks = self.winning_streaks
         streak_counts = {streak: streaks.count(streak) for streak in set(streaks)}
-        ax3.bar(streak_counts.keys(), streak_counts.values())
+        bars = ax3.bar(streak_counts.keys(), streak_counts.values())
         ax3.set_xlabel('Winning Streak Length')
         ax3.set_ylabel('Frequency')
         ax3.set_title('Winning Streaks')
 
+        # Add frequency labels on top of each bar
+        for bar in bars:
+            height = bar.get_height()
+            ax3.annotate(f'{height}',
+                         xy=(bar.get_x() + bar.get_width() / 2, height),
+                         xytext=(0, 3),  # 3 points vertical offset
+                         textcoords="offset points",
+                         ha='center', va='bottom')
+
         # Avoid plot label overlap
         plt.tight_layout()
         plt.show()
-
