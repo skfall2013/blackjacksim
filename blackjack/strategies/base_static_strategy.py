@@ -47,5 +47,9 @@ class BaseStaticStrategy(BaseStrategy):
         # Handle the edge case where doubling is the recommended action, but the user doesn't have enough money to do so.
         if action == 'Double' and 'Double' not in options.values():
             return 'Hit'
+
+        # Check for surrender action
+        if 'Surrender' in options.values() and action == 'Surrender':
+            return 'Surrender'
         
         return action

@@ -4,12 +4,12 @@
 19,Stand,Stand,Stand,Stand,Stand,Stand,Stand,Stand,Stand,Stand
 18,Stand,Stand,Stand,Stand,Stand,Stand,Stand,Stand,Stand,Stand
 17,Stand,Stand,Stand,Stand,Stand,Stand,Stand,Stand,Stand,Stand
-16,Stand,Stand,Stand,Stand,Stand,Hit,Hit,Hit,Hit,Hit
-15,Stand,Stand,Stand,Stand,Stand,Hit,Hit,Hit,Hit,Hit
+16,Stand,Stand,Stand,Stand,Stand,Hit,Hit,Surrender,Surrender,Surrender
+15,Stand,Stand,Stand,Stand,Stand,Hit,Hit,Hit,Surrender,Hit
 14,Stand,Stand,Stand,Stand,Stand,Hit,Hit,Hit,Hit,Hit
 13,Stand,Stand,Stand,Stand,Stand,Hit,Hit,Hit,Hit,Hit
 12,Hit,Hit,Stand,Stand,Stand,Hit,Hit,Hit,Hit,Hit
-11,Double,Double,Double,Double,Double,Double,Double,Double,Double,Double
+11,Double,Double,Double,Double,Double,Double,Double,Double,Double,Hit
 10,Double,Double,Double,Double,Double,Double,Double,Double,Hit,Hit
 9,Hit,Double,Double,Double,Double,Hit,Hit,Hit,Hit,Hit
 8,Hit,Hit,Hit,Hit,Hit,Hit,Hit,Hit,Hit,Hit
